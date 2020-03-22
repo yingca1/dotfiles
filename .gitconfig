@@ -167,9 +167,6 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
-[user]
-	name = caiying
-	email = i@caiying.me
 [filter "hawser"]
 	clean = git hawser clean %f
 	smudge = git hawser smudge %f
@@ -185,11 +182,5 @@
 [mergetool "sourcetree"]
 	cmd = " "
 	trustExitCode = true
-[commit]
-	template = /Users/caiying/.stCommitMsg
-[https]
-	proxy = http://127.0.0.1:8118
-[http]
-	proxy = http://127.0.0.1:8118
 [mergetool]
 	prompt = false
