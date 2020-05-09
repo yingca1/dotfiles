@@ -22,3 +22,4 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-scripts/Align'
 Plug 'bling/vim-airline'
+Plug 'psf/black', { 'branch': 'stable' }

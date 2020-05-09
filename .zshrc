@@ -103,3 +103,4 @@ export LANG=en_US.UTF-8
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+export PATH="/usr/local/sbin:$PATH"
