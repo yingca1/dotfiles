@@ -1,5 +1,14 @@
 # dotfiles
 
+## 用途
+
+快速搭建基于 tmux + vim + zsh 的终端下开发环境，用于
+
+- 服务器终端下开发，主要用于写 Python、Javascript、Shell 等
+- 命令行工具、自动化脚本等
+
+
+
 ## 安装
 
 ### 1. install tmux
@@ -8,19 +17,17 @@
 
 ### 2. install vim
 
-vim install plugins by Plug
-
-
-
 **Q: macOS 中如何更新系统自带的 vim**
 
 使用 brew 安装最新的 vim 覆盖系统自带的
 
 `brew install vim -- --with-override-system-vi`
 
+
+
 ### 3. install zsh
 
-install oh-my-zsh
+install [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 
 
 
@@ -71,6 +78,8 @@ You can adjust the size of the smaller panes in `tmux.conf` by lowering or incre
 
 
 ## 插件说明
+- 使用 Plug 管理插件，记得打开 vim 后，使用命令 :PlugInstall 安装插件
+- 更多插件，可前往 https://vimawesome.com/
 
 | 插件                                                         | 用途                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
