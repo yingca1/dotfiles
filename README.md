@@ -36,10 +36,10 @@ install [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 
 ```bash
 # install by git
-git clone https://github.com/realcaiying/dotfiles.git .dotfiles && cd .dotfiles && source install.sh
+git clone https://github.com/yingca1/dotfiles.git .dotfiles && cd .dotfiles && source install.sh
 
 # install without git
-cd; curl -sSL https://github.com/realcaiying/dotfiles/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,install.sh}
+cd; curl -sSL https://github.com/yingca1/dotfiles/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,install.sh}
 ```
 
 
