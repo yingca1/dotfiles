@@ -29,12 +29,21 @@
 
 install [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 
+[oh-my-zsh] plugin 推荐
+- git-flow-completion
+- zsh-completions
+- zsh-autosuggestions
+- zsh-syntax-highlighting
+- zsh-history-substring-search
 
 
 
 ### 4. 安装本项目配置
 
 ```bash
+# [macOS required] 需要 realpath
+brew install coreutils
+
 # install by git
 git clone https://github.com/yingca1/dotfiles.git .dotfiles && cd .dotfiles && source install.sh
 
@@ -79,6 +88,9 @@ You can adjust the size of the smaller panes in `tmux.conf` by lowering or incre
 
 ## 插件说明
 - 使用 Plug 管理插件，记得打开 vim 后，使用命令 :PlugInstall 安装插件
+> 插件安装依赖访问github的仓库，请注意：
+> 1. 需保证github.com网络通畅
+> 2. 需将本地的id_isa.pub添加到github的个人设置的SSH keys中
 - 更多插件，可前往 https://vimawesome.com/
 
 | 插件                                                         | 用途                                                         |
