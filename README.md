@@ -5,7 +5,7 @@
 ## 安装
 
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/yingca1/dotfiles/master/install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/yingca1/dotfiles/master/install.sh)"
 ```
 
 ## 常用操作

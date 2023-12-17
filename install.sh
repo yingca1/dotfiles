@@ -25,6 +25,14 @@ for dotfile in "${DOTFILES[@]}"; do
 done
 mv "${HOME}"/.vim "${DOTFILE_BACKUP_FOLDER}"/
 
+if [ ! -f /bin/zsh ]; then
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        sudo apt-get update && sudo apt-get install zsh
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        brew install zsh
+    fi
+fi
+
 
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -56,5 +64,7 @@ for dotfile in "${DOTFILES[@]}"; do
 done
 
 VIMRC=${HOME}/.vimrc
+
+touch ~/.vimrc.plugins.local
 
 vim -E -s -u "$VIMRC" +PlugInstall +qall
