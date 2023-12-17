@@ -23,7 +23,14 @@ for dotfile in "${DOTFILES[@]}"; do
         mv "${HOME}"/"${dotfile}" "${DOTFILE_BACKUP_FOLDER}"/
     fi
 done
-mv "${HOME}"/.vim "${DOTFILE_BACKUP_FOLDER}"/
+
+if [ -f "${HOME}"/.oh-my-zsh ]; then
+    mv "${HOME}"/.oh-my-zsh "${DOTFILE_BACKUP_FOLDER}"/
+fi
+
+if [ -f "${HOME}"/.vim ]; then
+    mv "${HOME}"/.vim "${DOTFILE_BACKUP_FOLDER}"/
+fi
 
 if [ ! -f /bin/zsh ]; then
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
