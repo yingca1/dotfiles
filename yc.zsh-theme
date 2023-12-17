@@ -7,9 +7,9 @@
 local platform=`uname`
 local ipaddr=$HOST
 if [[ "$platform" == "Darwin" ]]; then
-ipaddr=$(ipconfig getifaddr en0)
+ipaddr=$(ifconfig | awk '/inet / && !/127.0.0.1/{print $2; exit}')
 elif [[ "$platform" == "Linux" ]]; then
-ipaddr=$(ip -4 -o addr show dev eth0 | awk '{split($4,a,"/");print a[1]}')
+ipaddr=$(ip -4 -o addr show dev $(ip -4 route list 0/0 | awk '{print $5}') | awk '{split($4,a,"/");print a[1]}')
 fi
 
 function box_name {
