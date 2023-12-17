@@ -1,57 +1,12 @@
 # dotfiles
 
-## 用途
-
-快速搭建基于 tmux + vim + zsh 的终端下开发环境，用于
-
-- 服务器终端下开发，主要用于写 Python、Javascript、Shell 等
-- 命令行工具、自动化脚本等
-
-
+快速搭建基于 tmux + vim + zsh 的终端下开发环境。
 
 ## 安装
 
-### 1. install tmux
-
-
-
-### 2. install vim
-
-**Q: macOS 中如何更新系统自带的 vim**
-
-使用 brew 安装最新的 vim 覆盖系统自带的
-
-`brew install vim -- --with-override-system-vi`
-
-
-
-### 3. install zsh
-
-install [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
-
-[oh-my-zsh] plugin 推荐
-- git-flow-completion
-- zsh-completions
-- zsh-autosuggestions
-- zsh-syntax-highlighting
-- zsh-history-substring-search
-
-
-
-### 4. 安装本项目配置
-
 ```bash
-# [macOS required] 需要 realpath
-brew install coreutils
-
-# install by git
-git clone https://github.com/yingca1/dotfiles.git .dotfiles && cd .dotfiles && source install.sh
-
-# install without git
-cd; curl -sSL https://github.com/yingca1/dotfiles/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,install.sh}
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/yingca1/dotfiles/master/install.sh)"
 ```
-
-
 
 ## 常用操作
 
@@ -84,9 +39,8 @@ If you have three or more panes:
 
 You can adjust the size of the smaller panes in `tmux.conf` by lowering or increasing the `other-pane-height` and `other-pane-width` options.
 
-
-
 ## 插件说明
+
 - 使用 Plug 管理插件，记得打开 vim 后，使用命令 :PlugInstall 安装插件
 > 插件安装依赖访问github的仓库，请注意：
 > 1. 需保证github.com网络通畅
@@ -119,8 +73,6 @@ You can adjust the size of the smaller panes in `tmux.conf` by lowering or incre
 | vim-scripts/Align                                            | 对齐代码，例如在变量声明时                                   |
 | bling/vim-airline                                            | 挺不错的底部状态栏                                           |
 | psf/black                                                    | 格式化 python 代码                                           |
-
-
 
 ## Inspired By
 

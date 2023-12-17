@@ -69,8 +69,8 @@ ZSH_THEME="yc"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras redis-cli z cp macos python common-aliases history \
-web-search git-flow-completion zsh-completions zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search)
+plugins=(git git-extras redis-cli z cp python common-aliases history web-search \
+zsh-completions zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 
