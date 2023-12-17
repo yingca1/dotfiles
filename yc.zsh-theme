@@ -12,8 +12,11 @@ elif [[ "$platform" == "Linux" ]]; then
 ipaddr=$(ip -4 -o addr show dev $(ip -4 route list 0/0 | awk '{print $5}') | awk '{split($4,a,"/");print a[1]}')
 fi
 
+# try to fetch public ip address
+pub_ipaddr=$(curl -s ifconfig.me/ip)
+
 function box_name {
-    [ -f ~/.box-name ] && cat ~/.box-name || echo $ipaddr
+    [ -f ~/.box-name ] && cat ~/.box-name || echo ${ipaddr} - ${pub_ipaddr}
 }
 
 # Directory info.
