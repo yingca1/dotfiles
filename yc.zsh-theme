@@ -12,10 +12,10 @@ elif [[ "$platform" == "Linux" ]]; then
 ipaddr=$(ip -4 -o addr show dev $(ip -4 route list 0/0 | awk '{print $5}') | awk '{split($4,a,"/");print a[1]}')
 fi
 
-pub_ipaddr=$(curl -s ipinfo.io/ip)
+local pub_ipaddr=$(curl -s ipinfo.io/ip)
 
 function box_name {
-    [ -f ~/.box-name ] && cat ~/.box-name || echo ${HOST} - ${ipaddr} - ${pub_ipaddr}
+    [ -f ~/.box-name ] && cat ~/.box-name ||  echo ${HOST}"%{$reset_color%}[%{$fg[white]%}${ipaddr}%{$reset_color%}, %{$fg[cyan]%}${pub_ipaddr}%{$reset_color%}]"
 }
 
 # Directory info.
@@ -28,9 +28,9 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}x"
 ZSH_THEME_GIT_PROMPT_CLEAN=" %{$fg[green]%}o"
 
-# Prompt format: \n # USER@MACHINE in DIRECTORY on git:BRANCH STATE [TIME] \n $ 
-PROMPT="%{$terminfo[bold]$fg[blue]%}%{$reset_color%}%{$fg[cyan]%}%n%{$fg[white]%}@%{$fg[green]%}$(box_name) \
-%{$fg[white]%}in \
+# Prompt format: \n # USER@MACHINE[LanIP, PubIP]:DIRECTORY on git:BRANCH STATE [TIME] \n $
+PROMPT="%{$terminfo[bold]$fg[blue]%}%{$reset_color%}%{$fg[cyan]%}%n%{$fg[white]%}@%{$fg[green]%}$(box_name)\
+%{$fg[white]%}:\
 %{$terminfo[bold]$fg[yellow]%}${current_dir}%{$reset_color%}\
 ${git_info} \
 %{$fg[white]%}[%*]
