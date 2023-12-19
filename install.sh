@@ -34,7 +34,7 @@ fi
 
 if [ ! -f /bin/zsh ]; then
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        sudo apt-get update && sudo apt-get install zsh
+        sudo apt-get update && sudo apt-get install zsh -y
     elif [[ "$OSTYPE" == "darwin"* ]]; then
         brew install zsh
     fi
@@ -42,7 +42,7 @@ fi
 
 
 # install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # install zsh-completions
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
