@@ -8,7 +8,6 @@ DOTFILE_BACKUP_FOLDER="${HOME}"/dotfile_backup_$(date +%Y%m%d%H%M%S)
 # list all dotfiles in an array
 declare -a DOTFILES=(
     .gitconfig
-    .tmux.conf
     .vimrc
     .vimrc.plugins
     .zshrc
@@ -70,6 +69,19 @@ for dotfile in "${DOTFILES[@]}"; do
         "${DOTFILE_TMPL_BASE_URL}"/"${dotfile}"
 done
 
+# install tmux
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    sudo apt-get update && sudo apt-get install tmux -y
+    curl -fLo "${HOME}"/.tmux.conf.linux --create-dirs \
+        "${DOTFILE_TMPL_BASE_URL}"/.tmux.conf
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    brew install tmux reattach-to-user-namespace
+    curl -fLo "${HOME}"/.tmux.conf.macOS --create-dirs \
+        "${DOTFILE_TMPL_BASE_URL}"/.tmux.conf
+fi
+touch ~/.tmux.conf.local
+
+# install vim plugins
 VIMRC=${HOME}/.vimrc
 
 touch ~/.vimrc.plugins.local
