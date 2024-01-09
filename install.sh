@@ -73,13 +73,13 @@ done
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     sudo apt-get update && sudo apt-get install tmux -y
 
-    curl -fLo "${HOME}"/.tmux.conf.linux --create-dirs \
-        "${DOTFILE_TMPL_BASE_URL}"/.tmux.conf
+    curl -fLo "${HOME}"/.tmux.conf --create-dirs \
+        "${DOTFILE_TMPL_BASE_URL}"/.tmux.conf.linux
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     brew install tmux reattach-to-user-namespace
 
-    curl -fLo "${HOME}"/.tmux.conf.macOS --create-dirs \
-        "${DOTFILE_TMPL_BASE_URL}"/.tmux.conf
+    curl -fLo "${HOME}"/.tmux.conf --create-dirs \
+        "${DOTFILE_TMPL_BASE_URL}"/.tmux.conf.macOS
 fi
 touch ~/.tmux.conf.local
 
