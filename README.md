@@ -76,6 +76,8 @@ You can adjust the size of the smaller panes in `tmux.conf` by lowering or incre
 | bling/vim-airline                                            | 挺不错的底部状态栏                                           |
 | psf/black                                                    | 格式化 python 代码                                           |
 
-## Inspired By
+## Thanks
 
-https://github.com/square/maximum-awesome
+- https://github.com/square/maximum-awesome
+- https://github.com/gpakosz/.tmux
+- https://github.com/VSCodeVim/Vim
