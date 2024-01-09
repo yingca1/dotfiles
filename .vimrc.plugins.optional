@@ -1,0 +1,7 @@
+Plug 'preservim/tagbar', { 'on': 'TagbarToggle' }
+Plug 'dense-analysis/ale'
+Plug 'psf/black', { 'branch': 'stable' }
+Plug 'pangloss/vim-javascript'
+Plug 'garbas/vim-snipmate'
+Plug 'tomtom/tlib_vim'
+Plug 'MarcWeber/vim-addon-mw-utils'

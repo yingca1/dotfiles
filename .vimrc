@@ -32,7 +32,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip                   " Ignore these files 
 set wildmenu                                               " Enhanced command line completion
 
 " Mouse and window resizing settings
-set mouse=a                                                " Enable mouse support
+"set mouse=a                                                " Enable mouse support
 autocmd VimResized * :wincmd =                             " Auto-balance windows on resize
 
 " keyboard shortcuts
@@ -48,7 +48,7 @@ nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
 nnoremap <leader>t :CtrlP<CR>
 nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
-nnoremap <leader>] :TagbarToggle<CR>
+" nnoremap <leader>] :TagbarToggle<CR>
 nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
 nnoremap <leader>g :GitGutterToggle<CR>
 noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
@@ -60,9 +60,6 @@ cnoremap w!! %!sudo tee > /dev/null %
 let g:ctrlp_match_window = 'order:ttb,max:20'
 let g:NERDSpaceDelims=1
 let g:gitgutter_enabled = 0
-
-" use the new SnipMate parser
-let g:snipMate = { 'snippet_version' : 1 }
 
 set grepprg=rg\ --no-heading\ --line-number\ --color=never
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow -g "!.git/*"'

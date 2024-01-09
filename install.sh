@@ -72,16 +72,24 @@ done
 # install tmux
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     sudo apt-get update && sudo apt-get install tmux -y
+
     curl -fLo "${HOME}"/.tmux.conf.linux --create-dirs \
         "${DOTFILE_TMPL_BASE_URL}"/.tmux.conf
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     brew install tmux reattach-to-user-namespace
+
     curl -fLo "${HOME}"/.tmux.conf.macOS --create-dirs \
         "${DOTFILE_TMPL_BASE_URL}"/.tmux.conf
 fi
 touch ~/.tmux.conf.local
 
 # install vim plugins
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    sudo apt-get update && sudo apt-get install ripgrep bat fd-find silversearcher-ag fzf -y
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    brew install ripgrep bat fd the_silver_searcher fzf
+fi
+
 VIMRC=${HOME}/.vimrc
 
 touch ~/.vimrc.plugins.local
