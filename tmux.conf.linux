@@ -34,6 +34,8 @@ bind-key j select-pane -D
 bind-key k select-pane -U
 bind-key l select-pane -R
 
+bind-key C-k send-keys C-k
+
 # Resize panes like vim
 bind-key -r H resize-pane -L 10
 bind-key -r J resize-pane -D 10
@@ -87,10 +89,6 @@ set-option -g repeat-time 0
 
 # Ensure pane titles reflect the currently running command
 setw -g automatic-rename
-
-# Quick pane cycling with Ctrl+a
-unbind ^A
-bind ^A select-pane -t :.+
 
 # Source a local configuration file if it exists
 if-shell "[ -f ~/.tmux.conf.local ]" 'source-file ~/.tmux.conf.local'
