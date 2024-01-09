@@ -1,57 +1,39 @@
-" don't bother with vi compatibility
-set nocompatible
+" Basic settings
+set nocompatible                                           " Better default settings
+syntax enable                                              " Enable syntax highlighting
+set encoding=utf-8                                         " Use UTF-8 encoding
 
-" enable syntax highlighting
-syntax enable
-
-" configure Vundle
-filetype on " without this vim emits a zero exit status, later, because of :ft off
-filetype off
-" set rtp+=~/.vim/bundle/Vundle.vim
-
-" Specify a directory for plugins
-" - For Neovim: stdpath('data') . '/plugged'
-" - Avoid using standard Vim directory names like 'plugin'
+" Initialize vim-plug plugin manager
 call plug#begin("~/.vim/plugged")
 
+" Add your current plugins from ~/.vimrc.plugins and ~/.vimrc.plugins.local
 source ~/.vimrc.plugins
 source ~/.vimrc.plugins.local
 
 call plug#end()
+filetype plugin indent on                                  " Enable filetype detection
 
-" ensure ftdetect et al work by including this after the Vundle stuff
-filetype plugin indent on
+" General settings
+set autoindent                                             " Automatically indent new lines
+set autoread                                               " Auto-update files changed outside Vim
+set backspace=indent,eol,start                             " Make backspace behave like modern editors
+set clipboard=unnamed                                      " Use system clipboard
+set expandtab                                              " Convert tabs to spaces
+set ignorecase                                             " Case-insensitive searching
+set incsearch                                              " Show search results as you type
+set list listchars=tab:▸\ ,trail:▫                         " Show tabs and trailing spaces
+set number                                                 " Display line numbers
+set scrolloff=3                                            " Keep 3 lines above/below the cursor
+set shiftwidth=2                                           " Use 2 spaces for autoindent
+set smartcase                                              " Case-sensitive search if uppercase present
+set softtabstop=2                                          " Tab key inserts 2 spaces
+set tabstop=4                                              " Display existing tabs as 4 spaces
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip                   " Ignore these files in navigation
+set wildmenu                                               " Enhanced command line completion
 
-set autoindent
-set autoread                                                 " reload files when changed on disk, i.e. via `git checkout`
-set backspace=2                                              " Fix broken backspace in some setups
-set backupcopy=yes                                           " see :help crontab
-set clipboard=unnamed                                        " yank and paste with the system clipboard
-set directory-=.                                             " don't store swapfiles in the current directory
-set encoding=utf-8
-set expandtab                                                " expand tabs to spaces
-set ignorecase                                               " case-insensitive search
-set incsearch                                                " search as you type
-set laststatus=2                                             " always show statusline
-set list                                                     " show trailing whitespace
-set listchars=tab:▸\ ,trail:▫
-set number                                                   " show line numbers
-set ruler                                                    " show where you are
-set scrolloff=3                                              " show context above/below cursorline
-set shiftwidth=2                                             " normal mode indentation commands use 2 spaces
-set showcmd
-set smartcase                                                " case-sensitive search if any caps
-set softtabstop=2                                            " insert mode tab and backspace use 2 spaces
-set tabstop=8                                                " actual tabs occupy 8 characters
-set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
-set wildmenu                                                 " show a navigable menu for tab completion
-set wildmode=longest,list,full
-
-" Enable basic mouse behavior such as resizing buffers.
-set mouse=a
-if exists('$TMUX')  " Support resizing in tmux
-  set ttymouse=xterm2
-endif
+" Mouse and window resizing settings
+set mouse=a                                                " Enable mouse support
+autocmd VimResized * :wincmd =                             " Auto-balance windows on resize
 
 " keyboard shortcuts
 let mapleader = '\'
@@ -82,32 +64,22 @@ let g:gitgutter_enabled = 0
 " use the new SnipMate parser
 let g:snipMate = { 'snippet_version' : 1 }
 
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
+set grepprg=rg\ --no-heading\ --line-number\ --color=never
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow -g "!.git/*"'
 
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
-
-" fdoc is yaml
-autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
-" md is markdown
-autocmd BufRead,BufNewFile *.md set filetype=markdown
-autocmd BufRead,BufNewFile *.md set spell
-" extra rails.vim help
-autocmd User Rails silent! Rnavcommand decorator      app/decorators            -glob=**/* -suffix=_decorator.rb
-autocmd User Rails silent! Rnavcommand observer       app/observers             -glob=**/* -suffix=_observer.rb
-autocmd User Rails silent! Rnavcommand feature        features                  -glob=**/* -suffix=.feature
-autocmd User Rails silent! Rnavcommand job            app/jobs                  -glob=**/* -suffix=_job.rb
-autocmd User Rails silent! Rnavcommand mediator       app/mediators             -glob=**/* -suffix=_mediator.rb
-autocmd User Rails silent! Rnavcommand stepdefinition features/step_definitions -glob=**/* -suffix=_steps.rb
+" Custom file type settings
+augroup filetype_settings
+  autocmd!
+  autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
+  autocmd BufRead,BufNewFile *.md set filetype=markdown
+  autocmd BufRead,BufNewFile *.md set spell
+augroup END
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
 
 " Fix Cursor in TMUX
 if exists('$TMUX')
+  set ttymouse=xterm2
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
   let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 else
