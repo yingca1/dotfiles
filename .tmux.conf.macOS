@@ -109,4 +109,10 @@ bind-key -T root WheelDownPane if-shell -F -t = "#{alternate_on}" "send-keys -M"
 # AFAICT.
 set-option -g assume-paste-time 0
 
+# This configuration line ensures that tmux sessions inherit the SSH_AUTH_SOCK environment variable,
+# which is crucial for SSH agent forwarding to work within tmux sessions.
+# Without this setting, tmux sessions would not automatically update the SSH_AUTH_SOCK variable,
+# leading to SSH agent forwarding failures when creating new tmux windows or panes.
+set -g update-environment "SSH_AUTH_SOCK"
+
 if-shell "[ -f ~/.tmux.conf.local ]" 'source-file ~/.tmux.conf.local'
