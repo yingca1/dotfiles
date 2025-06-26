@@ -3,10 +3,10 @@ set nocompatible                                           " Better default sett
 syntax enable                                              " Enable syntax highlighting
 set encoding=utf-8                                         " Use UTF-8 encoding
 
-" Initialize vim-plug plugin manager
+" Vundle configuration (consider migrating to vim-plug for faster loading)
+filetype off                                               " Required for Vundle
 call plug#begin("~/.vim/plugged")
 
-" Add your current plugins from ~/.vimrc.plugins and ~/.vimrc.plugins.local
 source ~/.vimrc.plugins
 source ~/.vimrc.plugins.local
 
@@ -32,7 +32,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip                   " Ignore these files 
 set wildmenu                                               " Enhanced command line completion
 
 " Mouse and window resizing settings
-"set mouse=a                                                " Enable mouse support
+set mouse=a                                                " Enable mouse support
 autocmd VimResized * :wincmd =                             " Auto-balance windows on resize
 
 " keyboard shortcuts
@@ -43,12 +43,12 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <leader>l :Align
 nnoremap <leader>a :Ag<space>
-nnoremap <leader>b :CtrlPBuffer<CR>
+nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
-nnoremap <leader>t :CtrlP<CR>
-nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
-" nnoremap <leader>] :TagbarToggle<CR>
+nnoremap <leader>t :Files<CR>
+nnoremap <leader>T :Files<CR>
+nnoremap <leader>] :TagbarToggle<CR>
 nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
 nnoremap <leader>g :GitGutterToggle<CR>
 noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
@@ -57,12 +57,18 @@ noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo '
 cnoremap w!! %!sudo tee > /dev/null %
 
 " plugin settings
-let g:ctrlp_match_window = 'order:ttb,max:20'
 let g:NERDSpaceDelims=1
 let g:gitgutter_enabled = 0
 
+" use the new SnipMate parser
+let g:snipMate = { 'snippet_version' : 1 }
+
 set grepprg=rg\ --no-heading\ --line-number\ --color=never
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow -g "!.git/*"'
+
+" fzf settings
+let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 " Custom file type settings
 augroup filetype_settings
