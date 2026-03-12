@@ -13,9 +13,11 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/yingca1/dotfiles/master/
 ### tmux
 
 - both `<C-a>` and `<C-b>` are the prefix
-- mouse scroll initiates tmux scroll
+- tmux uses `tmux-256color` with focus and clipboard support enabled
+- copy mode uses tmux's native clipboard integration
 - `prefix v` makes a vertical split
 - `prefix s` makes a horizontal split
+- pane numbering starts at `1`
 
 If you have three or more panes:
 

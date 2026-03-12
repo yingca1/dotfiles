@@ -76,7 +76,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     curl -fLo "${HOME}"/.tmux.conf --create-dirs \
         "${DOTFILE_TMPL_BASE_URL}"/.tmux.conf.linux
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    brew install tmux reattach-to-user-namespace
+    brew install tmux
 
     curl -fLo "${HOME}"/.tmux.conf --create-dirs \
         "${DOTFILE_TMPL_BASE_URL}"/.tmux.conf.macOS

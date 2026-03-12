@@ -13,9 +13,11 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/yingca1/dotfiles/master/
 ### tmux
 
 - `<C-a>`和`<C-b>`都是前缀键
-- 鼠标滚动启动tmux滚动
+- tmux 使用 `tmux-256color`，并启用焦点与剪贴板能力
+- 复制模式使用 tmux 原生剪贴板集成
 - `prefix v`进行垂直分割
 - `prefix s`进行水平分割
+- pane 编号从 `1` 开始
 
 如果您有三个或更多窗格：
 
