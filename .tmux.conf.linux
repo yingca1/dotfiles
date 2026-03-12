@@ -2,10 +2,15 @@
 set -g prefix2 C-a                        # GNU-Screen compatible prefix
 bind C-a send-prefix -2
 
+# Make Esc in Neovim feel immediate.
+set -sg escape-time 0
+
 # Start windows and panes indexing from 1, not the default 0
 set -g base-index 1
 setw -g pane-base-index 1
-set -g history-limit 10000
+set -g history-limit 50000
+set -g mouse on
+set -g allow-passthrough on
 
 # Reload the config file with prefix + R
 bind-key R source-file ~/.tmux.conf \; display-message "Config reloaded!"
@@ -15,6 +20,7 @@ setw -g mode-keys vi
 
 # Set terminal type and terminal capabilities for modern terminal support
 set-option -g default-terminal "tmux-256color"
+set-option -ag terminal-overrides ",xterm-256color:RGB"
 set-option -g focus-events on
 set-option -s set-clipboard external
 set-option -as terminal-features ",xterm-256color:clipboard,extkeys,focus"
@@ -46,12 +52,13 @@ bind-key -r J resize-pane -D 10
 bind-key -r K resize-pane -U 10
 bind-key -r L resize-pane -R 10
 
-# uncomment below stanza to enable smart pane switching with awareness of vim splits
-bind -n C-h run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|/)(vim|nvim)$' && tmux send-keys C-h) || tmux select-pane -L"
-bind -n C-j run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|/)(vim|nvim)$' && tmux send-keys C-j) || tmux select-pane -D"
-bind -n C-k run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|/)(vim|nvim)$' && tmux send-keys C-k) || tmux select-pane -U"
-bind -n C-l run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|/)(vim|nvim)$' && tmux send-keys C-l) || tmux select-pane -R"
-bind -n C-\\ run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|/)(vim|nvim)$' && tmux send-keys C-\\) || tmux select-pane -l"
+# Inspect the pane TTY so vim variants are detected more reliably.
+is_vim="ps -o state= -o comm= -t '#{pane_tty}' | grep -iqE '^[^TXZ ]+ +(\\S+/)?g?(view|n?vim?x?)(diff)?$'"
+bind-key -n C-h if-shell "$is_vim" "send-keys C-h" "select-pane -L"
+bind-key -n C-j if-shell "$is_vim" "send-keys C-j" "select-pane -D"
+bind-key -n C-k if-shell "$is_vim" "send-keys C-k" "select-pane -U"
+bind-key -n C-l if-shell "$is_vim" "send-keys C-l" "select-pane -R"
+bind-key -n C-\\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l"
 bind C-l send-keys 'C-l'
 
 bind-key C-o rotate-window
@@ -79,7 +86,7 @@ bind-key -T copy-mode-vi Enter send-keys -X copy-selection-and-cancel
 
 # Status Bar
 set-option -g status-interval 10
-set-option -g status-left ''
+set-option -g status-left ' #S '
 set-option -g status-right '%l:%M%p'
 set-window-option -g window-status-current-style fg=magenta
 set-option -g status-style fg=default
