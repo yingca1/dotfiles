@@ -79,7 +79,8 @@ set-window-option -g other-pane-width 80
 
 bind-key a last-pane
 bind-key q display-panes
-bind-key , command-prompt -p "Pane title (empty to clear)" -I "#{pane_title}" "select-pane -T '%%'"
+bind-key , command-prompt -p "Window title" -I "#{window_name}" "rename-window '%%'"
+bind-key P command-prompt -p "Pane title (empty to clear)" -I "#{pane_title}" "select-pane -T '%%'"
 bind-key c new-window
 bind-key t next-window
 bind-key T previous-window
@@ -119,8 +120,9 @@ set -g visual-activity on
 # Keep repeat bindings responsive without leaving tmux in repeat mode for long.
 set-option -g repeat-time 300
 
-# Ensure pane titles reflect the currently running command
-setw -g automatic-rename
+# Keep manually named tabs/windows stable.
+set-window-option -g automatic-rename off
+set-window-option -g allow-rename off
 
 # This configuration line ensures that tmux sessions inherit the SSH_AUTH_SOCK environment variable,
 # which is crucial for SSH agent forwarding to work within tmux sessions.
