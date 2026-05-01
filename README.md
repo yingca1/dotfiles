@@ -26,6 +26,22 @@ If you have three or more panes:
 
 You can adjust the size of the smaller panes in `tmux.conf` by lowering or increasing the `other-pane-height` and `other-pane-width` options.
 
+### kitty
+
+On macOS, the install script installs kitty with Homebrew Cask and writes:
+
+- `~/.config/kitty/kitty.conf`
+- `~/.config/kitty/current-theme.conf`
+
+The default profile is tuned for tmux + vim + zsh:
+
+- `JetBrainsMonoNL Nerd Font Mono` at 15pt
+- `xterm-kitty` with kitty shell integration enabled
+- `Option` works as `Alt`, so common shell and vim meta bindings work naturally
+- `Cmd+C`/`Cmd+V` use the macOS clipboard
+- `Cmd+T`, `Cmd+Enter`, and `Cmd+\` provide light kitty tab/window/split controls while tmux remains the main multiplexer
+- Catppuccin Mocha is isolated in `current-theme.conf` so themes can be swapped without touching keybindings
+
 ### vim
 
 The following assume your leader key is set to `\`.

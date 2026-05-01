@@ -80,6 +80,15 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 
     curl -fLo "${HOME}"/.tmux.conf --create-dirs \
         "${DOTFILE_TMPL_BASE_URL}"/.tmux.conf.macOS
+
+    if ! command -v kitty >/dev/null 2>&1 && [ ! -d /Applications/kitty.app ]; then
+        brew install --cask kitty
+    fi
+
+    curl -fLo "${HOME}"/.config/kitty/kitty.conf --create-dirs \
+        "${DOTFILE_TMPL_BASE_URL}"/kitty/kitty.conf
+    curl -fLo "${HOME}"/.config/kitty/current-theme.conf --create-dirs \
+        "${DOTFILE_TMPL_BASE_URL}"/kitty/current-theme.conf
 fi
 touch ~/.tmux.conf.local
 

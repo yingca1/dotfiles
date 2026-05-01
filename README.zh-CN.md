@@ -26,6 +26,22 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/yingca1/dotfiles/master/
 
 您可以通过降低或增加`tmux.conf`中的`other-pane-height`和`other-pane-width`选项来调整较小窗格的大小。
 
+### kitty
+
+在 macOS 上，安装脚本会通过 Homebrew Cask 安装 kitty，并写入：
+
+- `~/.config/kitty/kitty.conf`
+- `~/.config/kitty/current-theme.conf`
+
+默认配置针对 tmux + vim + zsh：
+
+- 使用 `JetBrainsMonoNL Nerd Font Mono`，字号 15pt
+- 使用 `xterm-kitty`，并启用 kitty shell integration
+- `Option` 作为 `Alt`，方便 shell 与 vim 的 meta 快捷键
+- `Cmd+C`/`Cmd+V` 使用 macOS 剪贴板
+- `Cmd+T`、`Cmd+Enter`、`Cmd+\` 提供轻量的 kitty tab/window/split 控制，主分屏仍交给 tmux
+- Catppuccin Mocha 主题放在 `current-theme.conf`，换主题时不用改快捷键
+
 ### vim
 
 以下假设您的领导键设置为`\`。
